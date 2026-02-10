@@ -1,0 +1,6 @@
+name = "cloudflare-simple-worker"
+main = "src/index.ts"
+compatibility_date = "2025-10-01"
+
+[vars]
+INGESTION_ENDPOINT = "" # Set your API endpoint URL here or in Cloudflare Dashboard
