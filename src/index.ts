@@ -12,7 +12,17 @@ export interface Env {
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 
-    const response = await fetch(request);
+    // Force Worker to always run, bypass cache completely
+    const cacheBypass: RequestInit = {
+      cf: {
+        cacheEverything: false,
+        cacheTtl: 0,
+        bypassCache: true
+      }
+    } as RequestInit;
+
+    // Get the original response (with cache bypass)
+    const response = await fetch(request, cacheBypass);
 
     // Clone the response so we can read it multiple times
     const responseClone = response.clone();
