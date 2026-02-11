@@ -54,6 +54,7 @@ async function handleRequest(request: Request, response: Response, env: Env) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify([log])
+    // Send as NDJSON (newline-delimited JSON) - one JSON object per line
+    body: JSON.stringify(log)
   }).catch(error => console.error('Failed to send logs:', error));
 }
